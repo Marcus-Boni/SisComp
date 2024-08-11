@@ -14,6 +14,7 @@ export const CadastroContatos = () => {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+  const [contactRole, setContactRole] = useState('');
   const [message, setMessage] = useState('');
   const [contacts, setContacts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
@@ -58,12 +59,14 @@ export const CadastroContatos = () => {
         supplierId,
         name: contactName,
         email: contactEmail,
-        phone: contactPhone
+        phone: contactPhone,
+        role: contactRole
       });
       setMessage('Contato cadastrado com sucesso!');
       setContactName('');
       setContactEmail('');
       setContactPhone('');
+      setContactRole('');
     } catch (error) {
       console.error('Erro ao cadastrar contato: ', error);
       setMessage('Erro ao cadastrar contato.');
@@ -73,11 +76,12 @@ export const CadastroContatos = () => {
   const columns = [
     { name: 'Nome do Contato', selector: (row) => row.name, sortable: true },
     { name: 'Email', selector: (row) => row.email, sortable: true },
-    { name: 'Telefone', selector: (row) => row.phone, sortable: true }
+    { name: 'Telefone', selector: (row) => row.phone, sortable: true },
+    { name: 'Cargo', selector: (row) => row.role, sortable: true }
   ];
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg my-12">
       <h2 className="text-2xl font-bold mb-4">Cadastro de Contato</h2>
       {message && <p className="mb-4 text-center text-green-500">{message}</p>}
       <form onSubmit={handleSubmit}>
@@ -124,6 +128,16 @@ export const CadastroContatos = () => {
             className="w-full mt-2 p-2 border rounded-lg"
             value={contactPhone}
             onChange={(e) => setContactPhone(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Cargo</label>
+          <input
+            type="text"
+            className="w-full mt-2 p-2 border rounded-lg"
+            value={contactRole}
+            onChange={(e) => setContactRole(e.target.value)}
             required
           />
         </div>

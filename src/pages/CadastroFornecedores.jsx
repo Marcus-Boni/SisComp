@@ -5,8 +5,9 @@ import DataTable from 'react-data-table-component';
 
 export const CadastroFornecedores = () => {
   const [supplierName, setSupplierName] = useState('');
-  const [supplierEmail, setSupplierEmail] = useState('');
-  const [supplierPhone, setSupplierPhone] = useState('');
+  const [supplierCnpj, setSupplierCnpj] = useState('');
+  const [supplierSite, setSupplierSite] = useState('');
+  const [supplierAddress, setSupplierAddress] = useState('');
   const [message, setMessage] = useState('');
   const [suppliers, setSuppliers] = useState([]);
 
@@ -27,13 +28,15 @@ export const CadastroFornecedores = () => {
     try {
       await addDoc(collection(db, 'suppliers'), {
         name: supplierName,
-        email: supplierEmail,
-        phone: supplierPhone
+        cnpj: supplierCnpj,
+        site: supplierSite,
+        address: supplierAddress
       });
       setMessage('Fornecedor cadastrado com sucesso!');
       setSupplierName('');
-      setSupplierEmail('');
-      setSupplierPhone('');
+      setSupplierCnpj('');
+      setSupplierSite('');
+      setSupplierAddress('');
     } catch (error) {
       console.error('Erro ao cadastrar fornecedor: ', error);
       setMessage('Erro ao cadastrar fornecedor.');
@@ -41,18 +44,19 @@ export const CadastroFornecedores = () => {
   };
 
   const columns = [
-    { name: 'Nome do Fornecedor', selector: (row) => row.name, sortable: true },
-    { name: 'Email', selector: (row) => row.email, sortable: true },
-    { name: 'Telefone', selector: (row) => row.phone, sortable: true }
+    { name: 'Nome de Fantasia', selector: (row) => row.name, sortable: true },
+    { name: 'Cnpj', selector: (row) => row.cnpj, sortable: true },
+    { name: 'Site', selector: (row) => row.site, sortable: true },
+    { name: 'Endereço', selector: (row) => row.address, sortable: true }
   ];
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg my-12">
       <h2 className="text-2xl font-bold mb-4">Cadastro de Fornecedor</h2>
       {message && <p className="mb-4 text-center text-green-500">{message}</p>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-gray-700">Nome do Fornecedor</label>
+          <label className="block text-gray-700">Nome de Fantasia</label>
           <input
             type="text"
             className="w-full mt-2 p-2 border rounded-lg"
@@ -62,22 +66,32 @@ export const CadastroFornecedores = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
+          <label className="block text-gray-700">Razão Social</label>
           <input
-            type="email"
+            type="text"
             className="w-full mt-2 p-2 border rounded-lg"
-            value={supplierEmail}
-            onChange={(e) => setSupplierEmail(e.target.value)}
+            value={supplierCnpj}
+            onChange={(e) => setSupplierCnpj(e.target.value)}
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Telefone</label>
+          <label className="block text-gray-700">Site</label>
           <input
             type="text"
             className="w-full mt-2 p-2 border rounded-lg"
-            value={supplierPhone}
-            onChange={(e) => setSupplierPhone(e.target.value)}
+            value={supplierSite}
+            onChange={(e) => setSupplierSite(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Endereço</label>
+          <input
+            type="text"
+            className="w-full mt-2 p-2 border rounded-lg"
+            value={supplierAddress}
+            onChange={(e) => setSupplierAddress(e.target.value)}
             required
           />
         </div>

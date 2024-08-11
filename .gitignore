@@ -16,6 +16,9 @@ dist-ssr
 .env.test
 .env.production
 .env.local
+.env.*.local
+
+src/firebase.js
 
 
 # Editor directories and files

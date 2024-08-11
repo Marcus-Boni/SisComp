@@ -6,15 +6,13 @@ import DataTable from 'react-data-table-component';
 const columns = [
   { name: 'Nome do Produto', selector: (row) => row.name, sortable: true },
   { name: 'Descrição', selector: (row) => row.description, sortable: true },
-  { name: 'Código', selector: (row) => row.code, sortable: true },
-  { name: 'Unidade de Medida', selector: (row) => row.unit, sortable: true }
+  { name: 'Tipo', selector: (row) => row.type, sortable: true }
 ];
 
 export const CadastroProdutos = () => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
-  const [productCode, setProductCode] = useState('');
-  const [productUnit, setProductUnit] = useState('');
+  const [productType, setProductType] = useState('');
   const [message, setMessage] = useState('');
   const [products, setProducts] = useState([]);
 
@@ -37,14 +35,12 @@ export const CadastroProdutos = () => {
       await addDoc(collection(db, 'products'), {
         name: productName,
         description: productDescription,
-        code: productCode,
-        unit: productUnit
+        type: productType
       });
       setMessage('Produto cadastrado com sucesso!');
       setProductName('');
       setProductDescription('');
-      setProductCode('');
-      setProductUnit('');
+      setProductType('');
     } catch (error) {
       console.error('Erro ao cadastrar produto: ', error);
       setMessage('Erro ao cadastrar produto.');
@@ -52,7 +48,7 @@ export const CadastroProdutos = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg my-12">
       <h2 className="text-2xl font-bold mb-4">Cadastro de Produto</h2>
       {message && <p className="mb-4 text-center text-green-500">{message}</p>}
       <form onSubmit={handleSubmit}>
@@ -77,22 +73,12 @@ export const CadastroProdutos = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Código do Produto</label>
+          <label className="block text-gray-700">Tipo do produto</label>
           <input
             type="text"
             className="w-full mt-2 p-2 border rounded-lg"
-            value={productCode}
-            onChange={(e) => setProductCode(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Unidade de Medida</label>
-          <input
-            type="text"
-            className="w-full mt-2 p-2 border rounded-lg"
-            value={productUnit}
-            onChange={(e) => setProductUnit(e.target.value)}
+            value={productType}
+            onChange={(e) => setProductType(e.target.value)}
             required
           />
         </div>

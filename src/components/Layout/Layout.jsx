@@ -12,7 +12,7 @@ export function Layout() {
 
   return (
     <>
-      <header className="bg-white">
+      <header className="bg-gradient-to-r from-blue-300 via-green-200 to-yellow-300">
         <nav
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -23,8 +23,8 @@ export function Layout() {
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               <img
-                className="h-8 w-auto"
-                src="https://th.bing.com/th/id/OIP.P1NDJiiIvqAZ_VOBT-5KFAHaHa?pid=ImgDet&w=184&h=184&c=7&dpr=1,3"
+                className="h-8 w-auto lg:h-10 lg:w-auto"
+                src={'/cart.svg'}
                 alt=""
               />
             </NavLink>

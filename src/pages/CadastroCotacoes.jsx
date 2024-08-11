@@ -81,7 +81,7 @@ export const CadastroCotacoes = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg my-12">
       <h2 className="text-2xl font-bold mb-4">Cadastro de Cotação</h2>
       {message && <p className="mb-4 text-center text-green-500">{message}</p>}
       <form onSubmit={handleSubmit}>
