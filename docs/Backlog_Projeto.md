@@ -6,7 +6,7 @@
 1. **Implementação do Login de Usuário**
    - Desenvolver uma página de login.
    - Integrar autenticação com Firebase Authentication.
-   - Implementar suporte para login com e-mail/senha e provedores sociais (Google, Facebook, etc.).
+   - Implementar suporte para login com e-mail/senha.
    - Exibir mensagens de erro claras para falhas de login (e.g., senha incorreta).
 
 2. **Página de Registro de Usuário**

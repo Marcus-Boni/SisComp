@@ -18,7 +18,7 @@ dist-ssr
 .env.local
 .env.*.local
 
-src/firebase.js
+src/services/firebase.js
 
 
 # Editor directories and files
