@@ -3,8 +3,6 @@ import { db } from '../../services/firebase';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import DataTable from 'react-data-table-component';
 import { format } from 'date-fns';
-import { NavLink } from 'react-router-dom';
-import { BackwardIcon } from '@heroicons/react/24/outline';
 
 export const ConsultaCotacoes = () => {
   const [productId, setProductId] = useState('');
@@ -56,12 +54,6 @@ export const ConsultaCotacoes = () => {
   return (
     <>
       <div className="max-w-xl mx-auto p-4 bg-white shadow-md rounded-lg my-12 relative">
-        <NavLink
-          to="/cotacoes"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute sm:top-0 sm:-left-20 left-0 -top-11"
-        >
-          <BackwardIcon className="h-6 w-6 inline-block" />
-        </NavLink>
         <h2 className="text-2xl font-bold mb-4">Consulta de Cotações</h2>
         <div className="mb-4">
           <label className="block text-gray-700">Produto</label>

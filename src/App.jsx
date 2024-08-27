@@ -8,7 +8,7 @@ import { useEffect } from 'react'; */
 import { AuthProvider } from './context/AuthProvider';
 
 function App() {
-  /*  useEffect(() => {
+  /* useEffect(() => {
     const createAdmin = async () => {
       const adminEmail = 'admin@admin.com';
       const adminPassword = 'StrongPassword123';
@@ -23,7 +23,9 @@ function App() {
 
         await setDoc(doc(db, 'users', user.uid), {
           email: adminEmail,
-          role: 'administrador'
+          role: 'administrador',
+          blocked: false,
+          active: true
         });
 
         console.log('Administrador criado com sucesso');
@@ -37,8 +39,7 @@ function App() {
     };
 
     createAdmin();
-  }, []); 
-    Caso necessite de uma função que crie um usuário administrador no Firebase, descomente o trecho de código acima. */
+  }, []); */
 
   return (
     <>

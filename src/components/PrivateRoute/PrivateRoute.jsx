@@ -10,7 +10,7 @@ export const PrivateRoute = ({ children, requiredRole }) => {
   }
 
   if (requiredRole && role !== requiredRole) {
-    return <Navigate to="/" />;
+    return <Navigate to="/access-denied" />;
   }
 
   return children;

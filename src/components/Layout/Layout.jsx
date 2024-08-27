@@ -33,8 +33,6 @@ export function Layout() {
 
   const userRole = role;
 
-  console.log(userRole);
-
   const handleLogout = async () => {
     await signOut(auth);
     navigate('/login');
@@ -71,54 +69,65 @@ export function Layout() {
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
             {userRole === 'administrador' && (
-              <>
+              <div className="flex items-center gap-2 text-sm font-semibold leading-6 text-black focus:outline-none">
                 <NavLink
                   to={routes.home.path}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="block px-4 py-2 text-sm leading-6"
                 >
                   Home
                 </NavLink>
                 <NavLink
                   to={routes.produtos.path}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="block px-4 py-2 text-sm leading-6"
                 >
                   Produtos
                 </NavLink>
                 <NavLink
                   to={routes.fornecedores.path}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="block px-4 py-2 text-sm leading-6"
                 >
                   Fornecedores
                 </NavLink>
                 <NavLink
                   to={routes.contatos.path}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="block px-4 py-2 text-sm leading-6"
                 >
                   Contatos
                 </NavLink>
-              </>
+                <NavLink
+                  to={routes.requisicoesCompras.path}
+                  className="block px-4 py-2 text-sm leading-6"
+                >
+                  Requisições de Compras
+                </NavLink>
+                <NavLink
+                  to={routes.adminDashboard.path}
+                  className="block px-4 py-2 text-sm leading-6"
+                >
+                  Admin Dashboard
+                </NavLink>
+              </div>
             )}
             {userRole === 'administrador' && (
-              <Popover className="relative">
+              <Popover className="relative self-center">
                 <PopoverButton className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 focus:outline-none">
                   Cotações
                   <ChevronDownIcon className="h-5 w-5 ml-1 text-gray-700" />
                 </PopoverButton>
                 <PopoverPanel
-                  className="absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-lg transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0
-            "
+                  className="absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-lg transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0"
                   anchor="bottom start"
                   transition
                 >
                   <NavLink
-                    to={routes.cotacoes.path}
-                    className="block px-4 py-2 text-sm text-gray-700"
+                    to={routes.cotacoes.children[0].path}
+                    className="block px-4 py-2 text-sm leading-6"
                   >
                     Cadastrar Cotação
                   </NavLink>
                   <NavLink
-                    to={routes.cotacoes.children[0].path}
-                    className="block px-4 py-2 text-sm text-gray-700"
+                    to={routes.cotacoes.children[1].path}
+                    className="block px-4 py-2 text-sm leading-6"
                   >
                     Consultar Cotações
                   </NavLink>
@@ -135,10 +144,16 @@ export function Layout() {
                     Home
                   </NavLink>
                   <NavLink
-                    to={routes.cotacoes.children[0].path}
+                    to={routes.cotacoes.children[1].path}
                     className="block px-4 py-2 text-sm leading-6"
                   >
                     Consultar Cotações
+                  </NavLink>
+                  <NavLink
+                    to={routes.requisicoesCompras.path}
+                    className="block px-4 py-2 text-sm leading-6"
+                  >
+                    Requisições de Compras
                   </NavLink>
                 </div>
               </>

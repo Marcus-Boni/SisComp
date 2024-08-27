@@ -32,7 +32,6 @@ export const CadastroCotacoes = () => {
       }
     );
 
-    // Cleanup subscription on unmount
     return () => unsubscribeProducts();
   }, []);
 

@@ -25,7 +25,6 @@ export const CadastroProdutos = () => {
       setProducts(productsData);
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 

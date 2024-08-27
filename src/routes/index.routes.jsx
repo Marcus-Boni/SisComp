@@ -14,6 +14,9 @@ import { Login } from '../pages/Login';
 import { Registro } from '../pages/Registro';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { useAuth } from '../context/AuthProvider';
+import { NaoAutorizado } from '../pages/NaoAutorizado';
+import { RequisicaoDeCompras } from '../pages/RequisicaoDeCompras';
+import { AdminDashboard } from '../pages/AdminDashboard';
 
 export const routes = {
   login: {
@@ -44,8 +47,17 @@ export const routes = {
     path: '/cotacoes',
     title: 'Cotações',
     children: [
-      { path: '/cotacoes/consulta-cotacoes', title: 'Detalhes dos produtos' }
+      { path: '/cotacoes/cadastro-cotacoes', title: 'Cadastrar Cotação' },
+      { path: '/cotacoes/consulta-cotacoes', title: 'Consultar Cotações' }
     ]
+  },
+  adminDashboard: {
+    path: '/admin-dashboard',
+    title: 'Admin Dashboard'
+  },
+  requisicoesCompras: {
+    path: '/requisicoes-compras',
+    title: 'Requisições de Compras'
   },
 
   accessDenied: { path: '/access-denied', title: 'Acesso negado' },
@@ -58,6 +70,7 @@ const ProtectedLayout = () => {
   if (!currentUser) {
     return <Navigate to={routes.login.path} replace />;
   }
+
   return <Layout />;
 };
 
@@ -99,7 +112,7 @@ export const router = createBrowserRouter(
 
         <Route path={routes.cotacoes.path}>
           <Route
-            path="/cotacoes"
+            path="/cotacoes/cadastro-cotacoes"
             element={
               <PrivateRoute requiredRole="administrador">
                 <CadastroCotacoes />
@@ -111,13 +124,21 @@ export const router = createBrowserRouter(
             element={<ConsultaCotacoes />}
           />
         </Route>
+        <Route
+          path={routes.requisicoesCompras.path}
+          element={<RequisicaoDeCompras />}
+        />
 
         <Route
-          path={routes.accessDenied.path}
+          path={routes.adminDashboard.path}
           element={
-            <h1>Você não possui permissão para acessar este conteúdo!</h1>
+            <PrivateRoute requiredRole="administrador">
+              <AdminDashboard />
+            </PrivateRoute>
           }
         />
+
+        <Route path={routes.accessDenied.path} element={<NaoAutorizado />} />
 
         <Route path="*" element={<h1>404!</h1>} />
       </Route>

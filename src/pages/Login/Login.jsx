@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import toast from 'react-hot-toast';
+import { db } from '../../services/firebase';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -14,9 +16,32 @@ export const Login = () => {
 
     const auth = getAuth();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
-      toast.success('Login realizado com sucesso!');
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const userId = userCredential.user.uid;
+
+      const userDocRef = doc(db, 'users', userId);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+
+        if (userData.blocked) {
+          toast.error(
+            'Seu usuário está bloqueado. Entre em contato com o administrador.'
+          );
+          await auth.signOut();
+        } else {
+          navigate('/');
+          toast.success('Login realizado com sucesso!');
+        }
+      } else {
+        toast.error('Usuário não encontrado.');
+        await auth.signOut();
+      }
     } catch (err) {
       toast.error('Erro ao realizar login! Verifique suas credenciais.');
       console.error('Erro ao realizar login: ', err);

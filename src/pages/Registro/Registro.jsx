@@ -25,7 +25,10 @@ export const Registro = () => {
 
       await setDoc(doc(db, 'users', user.uid), {
         email,
-        role: 'colaborador'
+        role: 'colaborador',
+        blocked: false,
+        active: true,
+        isExist: true
       });
       navigate('/');
       toast.success('Registro realizado com sucesso!');
