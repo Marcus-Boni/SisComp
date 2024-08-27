@@ -28,7 +28,7 @@ export const Registro = () => {
         role: 'colaborador',
         blocked: false,
         active: true,
-        isExist: true
+        exists: true
       });
       navigate('/');
       toast.success('Registro realizado com sucesso!');

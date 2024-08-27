@@ -25,9 +25,9 @@ export const AdminDashboard = () => {
             id: doc.id,
             ...doc.data()
           }))
-          .filter((user) => user.isExist);
+          .filter((user) => user.exists);
 
-        const activeUsers = userList.filter((user) => user.isExist);
+        const activeUsers = userList.filter((user) => user.exists);
 
         setColaboradores(activeUsers);
       });
