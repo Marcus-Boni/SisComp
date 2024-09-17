@@ -2,6 +2,10 @@
 
 Bem-vindo ao sistema de gerenciamento de compras! Este projeto permite que colaboradores façam requisições de compras, acompanhem o estado das mesmas, e que administradores possam gerenciar estas requisições, bem como gerenciar colaboradores e suas permissões.
 
+## 💼 Conta de administrador padrão para acesso ao sistema.
+- **Login:** **admin@admin.com**
+- **Senha:** **StrongPassword123**
+
 ## 📋 Funcionalidades
 
 ### 1. **Autenticação e Autorização**
