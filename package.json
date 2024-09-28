@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "date-fns": "^3.6.0",
     "firebase": "^10.12.5",
     "firebase-admin": "^12.4.0",

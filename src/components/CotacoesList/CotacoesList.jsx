@@ -2,7 +2,6 @@ import { collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../../services/firebase';
 
-// eslint-disable-next-line react/prop-types
 export const CotacoesList = ({ requisicaoId }) => {
   const [cotacoes, setCotacoes] = useState([]);
 
@@ -19,13 +18,25 @@ export const CotacoesList = ({ requisicaoId }) => {
     return () => unsubscribe();
   }, [requisicaoId]);
 
+  const formatDateToBR = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  };
+
   return (
     <>
       {cotacoes.length === 0 && <p>Nenhuma cotação por enquanto!</p>}
       {cotacoes.map((cotacao, index) => (
         <li key={index}>
           <span>Preço: R${cotacao.preco}</span> -{' '}
-          <span>Data: {cotacao.data}</span>
+          <span>
+            Data:{' '}
+            {cotacao.data ? formatDateToBR(cotacao.data) : 'Data inválida'}
+          </span>
         </li>
       ))}
     </>
